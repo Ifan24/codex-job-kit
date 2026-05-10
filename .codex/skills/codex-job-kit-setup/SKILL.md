@@ -24,10 +24,11 @@ The goal is to turn a fresh clone into a living local workspace:
 - Do not commit resumes, private candidate profiles, real application history, generated cover letters, browser profiles, cookies, SQLite databases, or local settings.
 - Keep user-specific files under `local/`, `job-tracker/data/`, or `job-tracker/storage/`.
 - Never ask for passwords. If a job board needs sign-in, ask the user to sign in themselves in the browser.
-- Prefer `browser-use` for browser automation. If it is missing, tell the user how to enable/install it and pause browser-dependent setup until it is available.
+- Prefer Browser / `browser-use` for browser automation. If it is missing, tell the user how to enable/install it and pause browser-dependent setup until it is available.
 - Never click a final submit, send, or message action without explicit action-time confirmation from the user.
 - Before creating Codex automations, show the exact proposed automations in plain language and ask for confirmation.
 - The setup request authorizes repo-local dependency install and checks: `pnpm install`, `pnpm lint`, `pnpm build`, and `pnpm smoke-test`.
+- Gmail, GitHub, Chrome, and email plugins are not required for the default workflow.
 
 ## Setup Flow
 
@@ -79,7 +80,7 @@ Do not ask before running the repo-local `pnpm` commands above. The user already
 
 ### 3. Check Browser Automation
 
-Confirm whether a `browser-use` skill or plugin is available in Codex.
+Confirm whether a Browser / `browser-use` skill or plugin is available in Codex.
 
 If it is available:
 
@@ -88,7 +89,7 @@ If it is available:
 
 If it is not available:
 
-- tell the user: "This workflow expects the Browser Use plugin/skill for job-board verification."
+- tell the user: "This workflow expects Browser / browser-use for job-board discovery, live listing verification, tracker browser checks, and assisted application forms."
 - ask them to enable/install Browser Use in Codex; it is a Codex capability, not a package this repo can add with `pnpm`
 - continue non-browser setup, but do not pretend the daily workflow is fully ready
 
@@ -102,27 +103,15 @@ Ask the user to upload or provide:
 
 If the initial setup message did not include an attached or pasted resume/profile source, stop here and ask for it before creating `local/candidate-profile.md`. You may still record open setup questions in `local/setup-notes.md`, but do not invent a profile from an empty resume source.
 
-Ask these basics:
+Ask for missing preferences in a compact checklist instead of one long paragraph. Group them like this and mark values inferred from the resume as "assumed, please confirm":
 
-- preferred name
-- current city/time zone
-- work authorization and any visa constraints
-- earliest start date
-- target role families
-- target seniority or years of experience
-- preferred locations and work modes
-- salary range or "do not filter by salary"
-- industries/domains to prefer
-- industries/domains to avoid
-- must-have requirements
-- hard dealbreakers
-- job boards they can access
-- workflow mode: discovery-only, assisted-application, or both
-- source priority, including whether easy-apply sources should be used
-- whether part-time roles, internships, contract roles, or stretch roles are allowed
-- application cadence, such as daily, weekdays only, or weekly
-- whether Codex should generate cover letters
-- whether Codex should suggest resume tailoring
+- **Basics:** preferred name, current city/time zone, work authorization, visa constraints, earliest start date.
+- **Targets:** role families, seniority or years of experience, locations, remote/hybrid/onsite preference, salary handling.
+- **Filters:** preferred industries, excluded industries, must-haves, hard dealbreakers, allowed edge cases such as part-time, internships, contract roles, or stretch roles.
+- **Sources:** job boards the user can access, source priority, whether easy-apply flows are allowed.
+- **Workflow:** discovery-only, assisted applications, or both; cadence; cover-letter generation; resume tailoring.
+
+When setup is almost complete, ask unresolved preferences as a short numbered list the user can answer inline. Keep the list to the highest-impact missing items first, and avoid asking for facts already available in the resume.
 
 Then create or update:
 
@@ -241,7 +230,33 @@ At the end, explain that this repo should evolve with the user's search:
 Finish with:
 
 - what was set up
-- what still needs user action
-- how to run the first real shortlist
-- how to run the first assisted application session, if enabled
+- tracker URL and whether browser verification passed
+- checks that passed
+- private files created
+- unresolved preferences in a grouped numbered list
+- recommended automations, without creating them
+- exact next prompt to start the first daily shortlist workflow
+- exact next prompt to start the first assisted application session, if enabled
 - how to start or adjust automations
+
+Use this shape for the unresolved preference section:
+
+```text
+Before the first serious run, please confirm:
+1. Basics: work authorization, current city/time zone, earliest start date.
+2. Targets: preferred locations/work modes, target seniority, salary handling.
+3. Sources: which job boards you can access and whether easy-apply flows are allowed.
+4. Workflow: discovery-only or assisted applications too, cadence, cover letters, resume tailoring.
+```
+
+Use these next-step prompts when relevant:
+
+```text
+Start my first daily shortlist workflow using local/prompts/daily-shortlist.md.
+Use browser-use for live verification, import only verified roles, and summarize what changed in the tracker.
+```
+
+```text
+Start my first assisted application workflow using local/prompts/assisted-application.md.
+Use browser-use to screen live listings, fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
+```

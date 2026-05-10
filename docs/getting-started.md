@@ -10,13 +10,23 @@ Read SPEC.md and .codex/skills/codex-job-kit-setup/SKILL.md first.
 I have attached my resume. If you cannot see it, ask me for it before creating my candidate profile.
 ```
 
-Codex should install dependencies, run checks, ask for your resume and job preferences, create private files under `local/`, configure the tracker, and propose automations.
+Codex should install dependencies, run checks, ask for your resume and missing preferences, create private files under `local/`, configure the tracker, propose automations, and show the prompt to start your first workflow.
 
 ## Requirements
 
+Codex capabilities:
+
+- Browser / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms
+- Codex Automations for scheduled runs, if you want recurring workflows
+
+The setup skill is included in this repo; you do not need to install it separately.
+
+Local tools:
+
 - Node.js 20 or newer
 - pnpm
-- Browser Use / `browser-use` in Codex for job-board workflows
+
+Gmail, GitHub, Chrome, and email plugins are not required for the default workflow.
 
 ## Install
 

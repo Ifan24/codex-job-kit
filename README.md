@@ -4,6 +4,19 @@ A job tracker and Codex workflow for finding roles, reviewing fit, preparing app
 
 The tracker runs on your machine with SQLite. Codex uses the tracker commands to avoid duplicates, import shortlists, capture manual leads, log submitted applications, and summarize recent search runs.
 
+## Before You Start
+
+Install or enable these in Codex before running the full workflow:
+
+- **Browser / browser-use**: required for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- **Automations**: recommended for scheduled shortlist runs and weekly pipeline reviews. If automations are not available, you can run the workflow prompts manually.
+
+You do not need Gmail, GitHub, Chrome, or email plugins for the default workflow. The setup skill is included in this repo, so you do not need to install it separately; just ask Codex to read `.codex/skills/codex-job-kit-setup/SKILL.md`.
+
+Without Browser / `browser-use`, you can still run the tracker and CLI commands, but Codex cannot verify live job pages or assist with application forms.
+
+Your machine also needs Node.js 20 or newer and `pnpm`. The setup request below authorizes Codex to run `pnpm install`, `pnpm lint`, `pnpm build`, and `pnpm smoke-test` inside `job-tracker/`.
+
 ## Set Up With Codex
 
 After cloning the repo, open it in Codex and send this message. Attach or upload your resume with the same message if you can.
@@ -17,13 +30,13 @@ I have attached my resume. If you cannot see it, ask me for it before creating m
 Codex should:
 
 - install tracker dependencies and run `pnpm lint`, `pnpm build`, and `pnpm smoke-test`
-- check whether Browser Use / `browser-use` is available
+- check whether Browser / `browser-use` is available and tell you to enable it if it is missing
 - ask for your resume or profile source if you did not provide one
-- ask for role families, locations, work modes, seniority, salary rules, dealbreakers, source access, and cadence
+- ask for missing preferences as a grouped checklist covering basics, targets, filters, sources, and workflow
 - ask whether you want discovery-only, assisted applications, or both
 - create private files under `local/`
 - configure tracker Settings and private prompts
-- propose automations and ask before creating them
+- propose automations and show the next prompt to start your first workflow
 
 ## What You Get
 

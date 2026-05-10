@@ -12,13 +12,26 @@ I have attached my resume. If you cannot see it, ask me for it before creating m
 
 Codex should read `SPEC.md` for workflow rules and `.codex/skills/codex-job-kit-setup/SKILL.md` for the setup procedure.
 
+## Required Codex Capabilities
+
+The default workflow expects:
+
+- Browser / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- Codex Automations for scheduled shortlist runs and weekly pipeline reviews.
+
+The setup skill is included in this repo. The user does not need to install it separately.
+
+Gmail, GitHub, Chrome, and email plugins are not required for the default workflow.
+
+If Browser / `browser-use` is missing, tell the user to install or enable it from Codex, continue the non-browser setup, and make clear that live job-board workflows are not ready until Browser Use is available.
+
 ## What Codex Should Do
 
 1. Inspect the clone and confirm the expected files exist.
 2. Check Node.js and pnpm availability.
 3. Install tracker dependencies with `pnpm install`.
 4. Run tracker checks after install: `pnpm lint`, `pnpm build`, and `pnpm smoke-test`.
-5. Check whether Browser Use / `browser-use` is available.
+5. Check whether Browser / `browser-use` is available.
 6. If the user did not already attach or provide a resume, ask them to upload or provide a resume, CV, LinkedIn export, or profile source before creating `local/candidate-profile.md`.
 7. Ask for job-search preferences, dealbreakers, source access, and workflow mode.
 8. Create private setup files under `local/`.
@@ -35,24 +48,15 @@ Do not ask before running `pnpm install`, `pnpm lint`, `pnpm build`, or `pnpm sm
 
 ## User Inputs Codex Should Collect
 
-- preferred name
-- city/time zone
-- work authorization and constraints
-- earliest start date
-- target role families
-- target seniority or years of experience
-- preferred locations and work modes
-- salary range or instruction not to filter by salary
-- preferred industries/domains
-- excluded industries/domains
-- hard dealbreakers
-- job boards or sources the user can access
-- preferred workflow mode: discovery-only, assisted-application, or both
-- source priority, including whether easy-apply flows should be used
-- whether part-time roles, internships, contract roles, or stretch roles are allowed
-- application cadence
-- whether to generate cover letters
-- whether to suggest resume tailoring
+Ask for missing preferences in a compact checklist. Group them like this and mark values inferred from the resume as "assumed, please confirm":
+
+- **Basics:** preferred name, city/time zone, work authorization and constraints, earliest start date.
+- **Targets:** role families, seniority or years of experience, preferred locations, work modes, salary handling.
+- **Filters:** preferred industries/domains, excluded industries/domains, must-haves, hard dealbreakers, allowed edge cases such as part-time, internships, contract roles, or stretch roles.
+- **Sources:** job boards or sources the user can access, source priority, whether easy-apply flows should be used.
+- **Workflow:** discovery-only, assisted applications, or both; application cadence; cover-letter generation; resume tailoring.
+
+At the end of setup, ask unresolved preferences as a short numbered list the user can answer inline. Prioritize the highest-impact missing items and avoid asking for facts already available from the resume.
 
 Codex should also explain that assisted applications still require explicit human confirmation before final submit.
 
@@ -116,3 +120,39 @@ The assisted run should produce:
 - skipped or closed roles
 - duplicate or already-applied roles
 - blockers and exact next actions
+
+## Setup Finish Checklist
+
+Finish setup by reporting:
+
+- tracker URL and whether browser verification passed
+- checks that passed
+- private files created
+- unresolved preferences in a grouped numbered list
+- recommended automations, without creating them
+- exact next prompt to start the first daily shortlist workflow
+- exact next prompt to start the first assisted application session, if enabled
+
+Use this shape for unresolved preferences:
+
+```text
+Before the first serious run, please confirm:
+1. Basics: work authorization, current city/time zone, earliest start date.
+2. Targets: preferred locations/work modes, target seniority, salary handling.
+3. Sources: which job boards you can access and whether easy-apply flows are allowed.
+4. Workflow: discovery-only or assisted applications too, cadence, cover letters, resume tailoring.
+```
+
+Use this prompt to start discovery:
+
+```text
+Start my first daily shortlist workflow using local/prompts/daily-shortlist.md.
+Use browser-use for live verification, import only verified roles, and summarize what changed in the tracker.
+```
+
+Use this prompt to start assisted applications:
+
+```text
+Start my first assisted application workflow using local/prompts/assisted-application.md.
+Use browser-use to screen live listings, fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
+```
