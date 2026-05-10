@@ -4,6 +4,10 @@ A job tracker and Codex workflow for finding roles, reviewing fit, preparing app
 
 The tracker runs on your machine with SQLite. Codex uses the tracker commands to avoid duplicates, import shortlists, capture manual leads, log submitted applications, and summarize recent search runs.
 
+## Demo
+
+[![Watch the demo](docs/assets/demo/codex-job-kit-demo-preview.gif)](docs/assets/demo/codex-job-kit-demo.mp4)
+
 ## Set Up With Codex
 
 After cloning the repo, open it in Codex and send this message. Attach or upload your resume with the same message if you can.
