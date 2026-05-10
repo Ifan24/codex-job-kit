@@ -33,13 +33,13 @@ Install or enable these in Codex before running the full workflow:
 
 | Capability | Use |
 | --- | --- |
-| ![Codex Browser Use capability](docs/assets/codex-capabilities/browser-use.png) | Recommended Codex capability for job-board discovery, live listing verification, tracker browser checks, and assisted application forms. |
-| ![External Browser Use skill](docs/assets/codex-capabilities/browser-use-skill.png) | Optional external Browser Use CLI/upstream skill for non-Codex or CLI agent environments. See [browser-use/browser-use](https://github.com/browser-use/browser-use) and the [Browser Use CLI docs](https://docs.browser-use.com/open-source/browser-use-cli). |
-| ![Chrome plugin](docs/assets/codex-capabilities/chrome.png) | Recommended fallback for signed-in job-board sessions or sites that do not work well in Browser. |
-| ![Documents plugin](docs/assets/codex-capabilities/documents.png) | Recommended for editing resume and cover-letter document artifacts. |
-| ![PDF skill](docs/assets/codex-capabilities/pdf.png) | Recommended for creating, reviewing, and checking resume or cover-letter PDFs. |
-| ![Computer Use plugin](docs/assets/codex-capabilities/computer-use.png) | Optional last-resort fallback for OS-level actions when Browser and Chrome are unavailable. |
-| ![Gmail plugin](docs/assets/codex-capabilities/gmail.png) | Optional for mailbox status checks if the user explicitly wants email sync later. The default workflow does not use Gmail. |
+| <img src="docs/assets/codex-capabilities/browser-use.png" alt="Codex Browser Use capability" width="360"> | Recommended Codex capability for job-board discovery, live listing verification, tracker browser checks, and assisted application forms. |
+| <img src="docs/assets/codex-capabilities/browser-use-skill.png" alt="External Browser Use skill" width="360"> | Optional external Browser Use CLI/upstream skill for non-Codex or CLI agent environments. See [browser-use/browser-use](https://github.com/browser-use/browser-use) and the [Browser Use CLI docs](https://docs.browser-use.com/open-source/browser-use-cli). |
+| <img src="docs/assets/codex-capabilities/chrome.png" alt="Chrome plugin" width="360"> | Recommended fallback for signed-in job-board sessions or sites that do not work well in Browser. |
+| <img src="docs/assets/codex-capabilities/documents.png" alt="Documents plugin" width="360"> | Recommended for editing resume and cover-letter document artifacts. |
+| <img src="docs/assets/codex-capabilities/pdf.png" alt="PDF skill" width="360"> | Recommended for creating, reviewing, and checking resume or cover-letter PDFs. |
+| <img src="docs/assets/codex-capabilities/computer-use.png" alt="Computer Use plugin" width="360"> | Optional last-resort fallback for OS-level actions when Browser and Chrome are unavailable. |
+| <img src="docs/assets/codex-capabilities/gmail.png" alt="Gmail plugin" width="360"> | Optional for mailbox status checks if the user explicitly wants email sync later. The default workflow does not use Gmail. |
 
 Automations are recommended for scheduled shortlist runs and weekly pipeline reviews. If automations are not available, you can run the workflow prompts manually. This repo includes job-search skills that assume Codex Browser Use or Chrome is available.
 
