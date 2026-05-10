@@ -11,7 +11,7 @@ Full prompt template:
 ## Summary
 
 1. Read `SPEC.md`, `local/candidate-profile.md`, and `local/job-search-preferences.md`.
-2. Use configured sources and `browser-use` for job discovery and live verification.
+2. Use configured sources and Codex Browser Use / `browser-use` for job discovery and live verification, with Chrome fallback when needed.
 3. Exclude terminal existing roles through tracker lookup commands.
 4. Import verified roles into the tracker.
 5. Store cover letters when enabled.
@@ -36,6 +36,6 @@ pnpm store-cover-letter --job-id JOB_ID --text-file /path/to/cover-letter.txt --
 
 ## Safety Rules
 
-- Browser automation uses `browser-use`.
+- Browser automation prefers Codex Browser Use / `browser-use`, with Chrome fallback when needed.
 - Mailbox sync is not part of the default workflow.
 - The process graph uses tracker run summaries.

@@ -16,18 +16,21 @@ Codex should read `SPEC.md` for workflow rules and `.codex/skills/codex-job-kit-
 
 The default workflow expects:
 
-- Browser / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- Codex Browser Use / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
 - Chrome as a fallback for signed-in job-board sessions or sites that do not work well in Browser.
+- Documents for editing resume and cover-letter document artifacts.
+- PDF for creating, reviewing, and checking resume or cover-letter PDFs.
 - Codex Automations for scheduled shortlist runs and weekly pipeline reviews.
+- Computer Use only as a last-resort fallback for OS-level actions when Browser and Chrome are unavailable.
 
 The Codex skills are included in this repo. The user does not need to install them separately:
 
-- `.codex/skills/codex-job-kit-setup/SKILL.md` for setup
-- `.codex/skills/job-application-workflow/SKILL.md` for assisted applications and manual-lead capture
+- [setup skill](../.codex/skills/codex-job-kit-setup/SKILL.md)
+- [application workflow skill](../.codex/skills/job-application-workflow/SKILL.md)
 
-Gmail, GitHub, and email plugins are not required for the default workflow.
+Gmail, GitHub, and email plugins are not required for the default workflow. Gmail is optional only when the user explicitly wants mailbox status checks later.
 
-If Browser / `browser-use` is missing but Chrome is available, configure Chrome as the fallback browser surface for live workflows. If both Browser and Chrome are missing, tell the user to install or enable one of them from Codex, continue the non-browser setup, and make clear that live job-board workflows are not ready until a browser plugin is available.
+If Codex Browser Use / `browser-use` is missing but Chrome is available, configure Chrome as the fallback browser surface for live workflows. If both Codex Browser Use and Chrome are missing, tell the user to install or enable one of them from Codex, continue the non-browser setup, and make clear that live job-board workflows are not ready until a browser capability is available.
 
 ## What Codex Should Do
 
@@ -35,16 +38,17 @@ If Browser / `browser-use` is missing but Chrome is available, configure Chrome 
 2. Check Node.js and pnpm availability.
 3. Install tracker dependencies with `pnpm install`.
 4. Run tracker checks after install: `pnpm lint`, `pnpm build`, and `pnpm smoke-test`.
-5. Check whether Browser / `browser-use` or Chrome is available.
+5. Check whether Codex Browser Use / `browser-use`, Chrome, Documents, PDF, and Automations are available.
 6. If the user did not already attach or provide a resume, ask them to upload or provide a resume, CV, LinkedIn export, or profile source before creating `local/candidate-profile.md`.
-7. Ask for job-search preferences, dealbreakers, source access, and workflow mode.
-8. Create private setup files under `local/`.
-9. Configure tracker Settings for sources, workflow rules, document behavior, and candidate defaults.
-10. Create `local/prompts/daily-shortlist.md` from the public workflow template.
-11. Optionally create `local/prompts/assisted-application.md` from the public assisted-application template.
-12. Run command smoke tests against a temporary database.
-13. Ask before importing sample data into the real tracker.
-14. Propose automations and ask before creating them.
+7. Create a private resume workspace under `local/resume/`.
+8. Ask for job-search preferences, dealbreakers, source access, and workflow mode.
+9. Create private setup files under `local/`.
+10. Configure tracker Settings for sources, workflow rules, document behavior, and candidate defaults.
+11. Create `local/prompts/daily-shortlist.md` from the public workflow template.
+12. Optionally create `local/prompts/assisted-application.md` from the public assisted-application template.
+13. Run command smoke tests against a temporary database.
+14. Ask before importing sample data into the real tracker.
+15. Propose automations and ask before creating them.
 
 Smoke tests should include `pnpm smoke-test`, which exercises shortlist import/finalization, lane performance, and assisted-application helper commands using fake payloads in `examples/`.
 
@@ -68,6 +72,7 @@ Codex should also explain that assisted applications still require explicit huma
 
 Codex should keep user-specific files under ignored paths:
 
+- `local/resume/`
 - `local/candidate-profile.md`
 - `local/job-search-preferences.md`
 - `local/prompts/daily-shortlist.md`
@@ -78,6 +83,19 @@ Codex should keep user-specific files under ignored paths:
 - `job-tracker/storage/`
 
 Do not put private user data into tracked docs, examples, prompts, or source files.
+
+## Resume Workspace
+
+During setup, create `local/resume/` so Codex can find and update resume artifacts later without touching tracked public files.
+
+Recommended shape:
+
+- `local/resume/original/`: uploaded resume, CV, LinkedIn export, or source files
+- `local/resume/current-resume.pdf`: current PDF resume when available
+- `local/resume/resume.md`: extracted or editable text version for agent review
+- `local/resume/notes.md`: tailoring notes, build notes, and open resume questions
+
+If the user provides editable source such as LaTeX, Markdown, DOCX, or a folder of resume files, preserve it under `local/resume/original/` and note how to build or export it in `local/resume/notes.md`. If the user provides only a PDF, keep the PDF and create `local/resume/resume.md` from extracted text so Codex can reason over it. Use Documents/PDF capabilities when available for document editing or PDF verification.
 
 ## Automations
 
@@ -98,7 +116,7 @@ After setup, ask Codex:
 
 ```text
 Run my local daily shortlist workflow from local/prompts/daily-shortlist.md.
-Prefer browser-use for live verification and use Chrome as fallback when needed. Import only verified roles into the tracker.
+Prefer Codex Browser Use / browser-use for live verification and use Chrome as fallback when needed. Import only verified roles into the tracker.
 ```
 
 The first run should produce:
@@ -114,7 +132,7 @@ For assisted applications, ask Codex:
 
 ```text
 Run my local assisted application workflow from local/prompts/assisted-application.md.
-Prefer browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields, pause before final submit, and capture manual leads when blocked.
+Prefer Codex Browser Use / browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields, pause before final submit, and capture manual leads when blocked.
 ```
 
 The assisted run should produce:
@@ -151,7 +169,7 @@ Use this prompt to start discovery:
 
 ```text
 Start my first daily shortlist workflow using local/prompts/daily-shortlist.md.
-Prefer browser-use for live verification and use Chrome as fallback when needed. Import only verified roles and summarize what changed in the tracker.
+Prefer Codex Browser Use / browser-use for live verification and use Chrome as fallback when needed. Import only verified roles and summarize what changed in the tracker.
 ```
 
 Use this prompt to start assisted applications:
@@ -159,5 +177,5 @@ Use this prompt to start assisted applications:
 ```text
 Start my first assisted application workflow using local/prompts/assisted-application.md.
 Read .codex/skills/job-application-workflow/SKILL.md first.
-Prefer browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
+Prefer Codex Browser Use / browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
 ```

@@ -1,6 +1,6 @@
 # Daily Shortlist Public Template
 
-Purpose: reusable public workflow template for discovering jobs, verifying listings with `browser-use`, importing into `job-tracker`, storing cover letters, and finalizing run data.
+Purpose: reusable public workflow template for discovering jobs, verifying listings with Codex Browser Use / `browser-use`, importing into `job-tracker`, storing cover letters, and finalizing run data.
 
 ## Configuration Inputs
 
@@ -43,7 +43,7 @@ Search for fresh job leads, filter them against candidate fit and already-tracke
 
 ## Browser Execution Model
 
-Prefer `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
+Prefer Codex Browser Use / `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
 
 Preferred patterns:
 

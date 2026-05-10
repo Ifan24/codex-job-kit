@@ -1,6 +1,6 @@
 # Assisted Application Public Template
 
-Purpose: reusable public workflow template for using Codex and `browser-use` to screen live roles, prepare safe application forms, pause before final submit, and write application outcomes back to `job-tracker`.
+Purpose: reusable public workflow template for using Codex Browser Use / `browser-use` to screen live roles, prepare safe application forms, pause before final submit, and write application outcomes back to `job-tracker`.
 
 ## Configuration Inputs
 
@@ -40,7 +40,7 @@ This workflow optimizes for useful submitted applications and high-quality manua
 
 ## Browser Execution Model
 
-Prefer `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
+Prefer Codex Browser Use / `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
 
 Preferred patterns:
 
@@ -92,7 +92,7 @@ Apply or capture a lead only when the role matches the user's role family, level
 
 For each suitable role:
 
-1. Open the application flow with `browser-use`, or Chrome when using fallback mode.
+1. Open the application flow with Codex Browser Use / `browser-use`, or Chrome when using fallback mode.
 2. Read all visible questions before filling.
 3. Fill factual fields from `<CANDIDATE_PROFILE>` and `<JOB_SEARCH_PREFERENCES>`.
 4. Ask the user when a question needs judgment, sensitive disclosure, or missing information.

@@ -30,6 +30,7 @@ Keep user-specific state outside tracked public files.
 Recommended private paths:
 
 - `local/candidate-profile.md`: factual profile distilled from the user's resume and answers.
+- `local/resume/`: private resume workspace with uploaded source, current PDF, extracted text, and tailoring notes.
 - `local/job-search-preferences.md`: role families, locations, work modes, salary rules, exclusions, and cadence.
 - `local/prompts/daily-shortlist.md`: personalized copy of the public workflow prompt.
 - `local/prompts/assisted-application.md`: optional personalized assisted-application workflow prompt.
@@ -57,6 +58,8 @@ The setup agent must create or update a factual candidate profile from user-prov
 
 The agent must not invent credentials, metrics, employers, projects, or experience.
 
+The setup agent should also create a private resume workspace under `local/resume/`. If the user provides editable source, preserve it there and document the build/export path. If the user provides only a PDF or DOCX, keep the original and create an extracted `local/resume/resume.md` for agent-readable context.
+
 ## Preferences Contract
 
 The setup agent must ask for and store:
@@ -80,11 +83,11 @@ Even if the user asks for a fast application loop, final-submit confirmation is 
 
 ## Browser Automation Contract
 
-The workflow uses `browser-use` for job-board and listing verification, with Chrome as a fallback when Browser is unavailable or cannot access a needed signed-in session.
+The workflow uses Codex Browser Use / `browser-use` for job-board and listing verification, with Chrome as a fallback when Browser is unavailable or cannot access a needed signed-in session.
 
 The agent must:
 
-- use browser automation only after reading the relevant Browser / `browser-use` or Chrome instructions
+- use browser automation only after reading the relevant Codex Browser Use / `browser-use` or Chrome instructions
 - ask the user to sign in manually when a source requires authentication
 - avoid storing cookies, browser profiles, passwords, or tokens in tracked files
 - use browser-final verification for recommended and borderline roles
@@ -97,7 +100,7 @@ The agent must:
 - stop before any final submit, send, or external message action and ask for explicit confirmation
 - capture a manual lead instead of bypassing CAPTCHA, login, identity, payment, or anti-automation gates
 
-If both `browser-use` and Chrome are unavailable, setup may continue, but job-board workflows will need manual browser work.
+If both Codex Browser Use / `browser-use` and Chrome are unavailable, setup may continue, but job-board workflows will need manual browser work.
 
 ## Discovery Workflow
 
@@ -116,7 +119,7 @@ The assisted application workflow turns verified or newly found roles into appli
 The workflow should:
 
 1. Read `local/candidate-profile.md`, `local/job-search-preferences.md`, tracker state, and the selected application workflow prompt.
-2. Open the configured source with `browser-use`, or Chrome fallback when needed, and inspect the live listing, not just the search-card summary.
+2. Open the configured source with Codex Browser Use / `browser-use`, or Chrome fallback when needed, and inspect the live listing, not just the search-card summary.
 3. Run tracker duplicate checks by URL and by title/company before investing in an application.
 4. Screen for role family, seniority, location/work mode, work authorization, compensation rules, and hard dealbreakers.
 5. Prefer official ATS or company pages when the same role appears in multiple places.

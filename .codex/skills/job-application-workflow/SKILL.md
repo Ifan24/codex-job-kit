@@ -1,6 +1,6 @@
 ---
 name: job-application-workflow
-description: Use when the user asks Codex to find, screen, apply to, or capture job leads from job boards, easy-apply flows, official company pages, or ATS pages using Browser / browser-use with Chrome fallback and the local codex-job-kit tracker.
+description: Use when the user asks Codex to find, screen, apply to, or capture job leads from job boards, easy-apply flows, official company pages, or ATS pages using Codex Browser Use / browser-use with Chrome fallback and the local codex-job-kit tracker.
 ---
 
 # Job Application Workflow
@@ -11,15 +11,15 @@ This skill is generic. It must use the user's private local profile and preferen
 
 ## Required Tools
 
-- Prefer Browser / `browser-use` for browser interaction.
-- Read the Browser / `browser-use` instructions before the first browser action in a turn.
+- Prefer Codex Browser Use / `browser-use` for browser interaction.
+- Read the Codex Browser Use / `browser-use` instructions before the first browser action in a turn.
 - Use the Chrome plugin as the fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
 - Before the first Chrome action in a turn, read the Chrome skill instructions and use the user's existing Chrome profile/session only when relevant.
 - Use local shell commands for tracker lookup, status updates, and payload validation.
 - Do not require Gmail, GitHub, or email plugins for the default workflow.
 - Do not fall back to Computer Use unless Browser and Chrome are unavailable, or the user explicitly asks for it.
 
-If Browser / `browser-use` is unavailable but Chrome is available, continue in Chrome and note the fallback. If neither Browser nor Chrome is available, explain that live job-board verification and application forms are blocked. Continue only with non-browser tracker work, such as reviewing local ready-to-apply jobs or preparing payloads.
+If Codex Browser Use / `browser-use` is unavailable but Chrome is available, continue in Chrome and note the fallback. If neither Browser nor Chrome is available, explain that live job-board verification and application forms are blocked. Continue only with non-browser tracker work, such as reviewing local ready-to-apply jobs or preparing payloads.
 
 ## Sources Of Truth
 
@@ -29,6 +29,7 @@ Read these before a non-trivial application session:
 - `AGENTS.md`
 - `local/candidate-profile.md`
 - `local/job-search-preferences.md`
+- `local/resume/` for current resume source, PDF, extracted text, and tailoring notes
 - `local/prompts/assisted-application.md` when it exists
 - `job-tracker/data/settings.json` when it exists
 - tracker state through `job-tracker` lookup/status commands
@@ -48,6 +49,8 @@ Use only facts present in the local candidate profile, search preferences, resum
 - If a form asks a question that is not covered by local facts or explicit preferences, pause and ask the user.
 - Treat values marked "assumed, please confirm" as unresolved until the user confirms them.
 - Use the selected resume or local resume path only when it is clearly configured.
+- Prefer `local/resume/current-resume.pdf` for upload when it exists and the user has not selected another resume.
+- Use Documents/PDF capabilities when creating, editing, or checking resume and cover-letter artifacts.
 - Do not paste resume text as a workaround for a required file upload.
 - Upload private files only through normal browser upload controls.
 - Keep all private files, generated answers, cookies, sessions, and browser profiles out of git.
@@ -96,7 +99,7 @@ When the same role appears in multiple places, use the most official accessible 
 
 For each suitable role:
 
-1. Open the listing or application flow with Browser / `browser-use`, or Chrome when using fallback mode.
+1. Open the listing or application flow with Codex Browser Use / `browser-use`, or Chrome when using fallback mode.
 2. Read the full listing and all visible questions before filling.
 3. Fill only factual fields grounded in local profile/preferences.
 4. Ask the user when a question needs judgment, sensitive disclosure, or a missing preference.

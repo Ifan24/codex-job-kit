@@ -11,7 +11,7 @@ Full prompt template:
 ## Summary
 
 1. Read `SPEC.md`, `local/candidate-profile.md`, `local/job-search-preferences.md`, and tracker state.
-2. Use `browser-use` to inspect live listings and application pages.
+2. Use Codex Browser Use / `browser-use` to inspect live listings and application pages, with Chrome fallback when needed.
 3. Check duplicates before filling any application.
 4. Screen each role against the user's role, seniority, location, work-mode, salary, authorization, and dealbreaker rules.
 5. Fill only factual answers grounded in the candidate profile or explicit user preferences.
@@ -55,7 +55,7 @@ Part-time roles, internships, contract roles, or stretch roles are allowed only 
 
 For each promising role:
 
-1. Open the listing or application page with `browser-use`, or Chrome fallback when needed.
+1. Open the listing or application page with Codex Browser Use / `browser-use`, or Chrome fallback when needed.
 2. Normalize title, company, platform, canonical URL, location, and work mode.
 3. Run duplicate lookup by URL and by title/company.
 4. Read the full listing and application questions.
@@ -122,7 +122,7 @@ They accept a JSON file or `--stdin`. Application and lead payloads may referenc
 
 ## Safety Rules
 
-- Browser automation uses `browser-use`.
+- Browser automation prefers Codex Browser Use / `browser-use`, with Chrome fallback when needed.
 - Mailbox sync is not part of the default workflow.
 - Codex must pause before final submission.
 - Application logging and manual lead capture should go through tracker helpers or equivalent UI actions.

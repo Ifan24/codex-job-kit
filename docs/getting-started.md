@@ -16,14 +16,16 @@ Codex should install dependencies, run checks, ask for your resume and missing p
 
 Codex capabilities:
 
-- Browser / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms
+- Codex Browser Use / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms
 - Chrome as a fallback for signed-in job-board sessions or sites that do not work well in Browser
+- Documents for editing resume and cover-letter document artifacts
+- PDF for creating, reviewing, and checking resume or cover-letter PDFs
 - Codex Automations for scheduled runs, if you want recurring workflows
 
 The Codex skills are included in this repo; you do not need to install them separately:
 
-- `.codex/skills/codex-job-kit-setup/SKILL.md` for setup
-- `.codex/skills/job-application-workflow/SKILL.md` for assisted applications and manual-lead capture
+- [setup skill](../.codex/skills/codex-job-kit-setup/SKILL.md)
+- [application workflow skill](../.codex/skills/job-application-workflow/SKILL.md)
 
 Local tools:
 
