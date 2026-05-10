@@ -1,0 +1,25 @@
+.DS_Store
+node_modules/
+.pnpm-store/
+
+# Local runtime data
+job-tracker/data/jobs.db
+job-tracker/data/jobs.db-*
+job-tracker/data/settings.json
+job-tracker/storage/**
+!job-tracker/storage/.gitkeep
+local/**
+!local/.gitkeep
+
+# Local config
+.env*
+!.env.example
+job-tracker/.env*
+!job-tracker/.env.example
+
+# HyperFrames QA artifacts
+video/**/.hyperframes/
+video/**/snapshots/
+video/**/renders/
+video/**/*.mp4
+video/**/.DS_Store

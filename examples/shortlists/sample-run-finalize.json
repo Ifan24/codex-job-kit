@@ -1,0 +1,43 @@
+{
+  "runId": 1,
+  "promptVersion": "daily-shortlist-public-template-v1",
+  "runQuality": "good",
+  "promptUpdated": false,
+  "funnel": {
+    "rawHarvested": 8,
+    "uniqueAfterCheapDedupe": 5,
+    "batchPreverified": 4,
+    "batchExcluded": 1,
+    "livePagesVerified": 2,
+    "excludedTerminalDuplicates": 0,
+    "importedRecommend": 1,
+    "importedBorderline": 1,
+    "importedSkip": 0
+  },
+  "laneReviews": [
+    {
+      "lane": "Example source lane",
+      "source": "Example Board",
+      "laneId": "example-source-lane",
+      "wave": 0,
+      "finishedCleanly": true,
+      "authStatus": "stable",
+      "rawCandidates": 5,
+      "stableUrlsCaptured": 2,
+      "candidatesReturned": 2,
+      "recommendCount": 1,
+      "borderlineCount": 1,
+      "terminalDuplicateCount": 0,
+      "blockedCount": 0,
+      "blockedSources": [],
+      "notes": "Sample lane review for local testing."
+    }
+  ],
+  "workflowIssues": [],
+  "nextRunAdjustments": ["Replace sample sources with configured job boards and company pages."],
+  "coverLetterSummary": {
+    "generated": 0,
+    "failed": 0,
+    "notes": ["Sample run did not generate cover letters."]
+  }
+}

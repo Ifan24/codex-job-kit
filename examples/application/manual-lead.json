@@ -1,0 +1,20 @@
+{
+  "canonicalUrl": "https://example.com/jobs/platform-engineer-manual",
+  "title": "Platform Engineer",
+  "company": "Example Systems",
+  "platform": "Company Careers",
+  "location": "Remote",
+  "workMode": "remote",
+  "employmentType": "full-time",
+  "salaryText": "Not listed",
+  "sourceQuality": "direct",
+  "descriptionSummary": "Build deployment tooling and internal platform workflows for a product engineering team.",
+  "bucket": "recommend",
+  "fitAssessment": "Strong fit for a candidate with backend, automation, and platform experience.",
+  "riskNote": "Manual account verification is required before upload.",
+  "legitimacyNote": "Direct company careers page.",
+  "whyGoodFit": "Backend/platform scope matches the user's target role family.",
+  "stoppedBecause": "The application requires email verification before resume upload.",
+  "nextAction": "Create or verify the account, upload resume, review answers, and submit.",
+  "applicationStatus": "ready_to_apply"
+}

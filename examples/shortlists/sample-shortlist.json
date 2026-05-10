@@ -1,0 +1,46 @@
+{
+  "searchedAt": "2026-05-01T00:00:00.000Z",
+  "promptVersion": "daily-shortlist-public-template-v1",
+  "platforms": ["Example Board", "Company Careers"],
+  "summary": "Sample import payload with fake roles for local testing.",
+  "blockedSources": [
+    {
+      "source": "Example Aggregator",
+      "reason": "Sample blocked source entry."
+    }
+  ],
+  "jobs": [
+    {
+      "canonicalUrl": "https://example.com/jobs/software-engineer-123",
+      "title": "Software Engineer",
+      "company": "Example Cloud",
+      "platform": "Company Careers",
+      "location": "Remote",
+      "workMode": "remote",
+      "employmentType": "full-time",
+      "salaryText": "Not listed",
+      "sourceQuality": "direct",
+      "descriptionSummary": "Build backend services and product integrations for a small platform team.",
+      "bucket": "recommend",
+      "fitAssessment": "Good match for a candidate with backend API and product engineering experience.",
+      "riskNote": "Confirm production on-call expectations before applying.",
+      "legitimacyNote": "Direct company careers page."
+    },
+    {
+      "canonicalUrl": "https://example.org/careers/full-stack-developer",
+      "title": "Full Stack Developer",
+      "company": "Example Studio",
+      "platform": "Example Board",
+      "location": "Hybrid",
+      "workMode": "hybrid",
+      "employmentType": "full-time",
+      "salaryText": "Not listed",
+      "sourceQuality": "job-board",
+      "descriptionSummary": "Work across React UI, API endpoints, and workflow automation features.",
+      "bucket": "borderline",
+      "fitAssessment": "Potential fit if the candidate wants a smaller product team.",
+      "riskNote": "Listing mentions broad ownership; verify seniority expectations.",
+      "legitimacyNote": "Posting links to a plausible company domain."
+    }
+  ]
+}

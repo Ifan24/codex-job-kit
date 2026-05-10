@@ -1,0 +1,18 @@
+{
+  "canonicalUrl": "https://example.com/jobs/software-engineer-submitted",
+  "title": "Software Engineer",
+  "company": "Example Product",
+  "platform": "Example Board",
+  "location": "Hybrid",
+  "workMode": "hybrid",
+  "employmentType": "full-time",
+  "salaryText": "Not listed",
+  "sourceQuality": "job_board",
+  "descriptionSummary": "Work on customer-facing product features and backend integrations.",
+  "bucket": "recommend",
+  "fitAssessment": "Good fit for a candidate with full-stack product engineering experience.",
+  "riskNote": "Confirm team seniority expectations if invited to screen.",
+  "legitimacyNote": "Application was submitted through the employer's linked form.",
+  "appliedAt": "2026-05-01",
+  "applicationNotes": "Submitted after user confirmation. Resume uploaded and required form answers completed from the local candidate profile."
+}

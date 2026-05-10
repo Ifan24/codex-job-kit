@@ -1,0 +1,40 @@
+{
+  "name": "codex-job-kit-tracker",
+  "version": "0.1.0",
+  "description": "Job-search workflow tracker for Codex-assisted shortlist, application, and cover-letter workflows.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint",
+    "smoke-test": "node scripts/smoke-test.mjs",
+    "import-shortlist": "node scripts/import-shortlist.mjs",
+    "finalize-search-run": "node scripts/finalize-search-run.mjs",
+    "lane-performance": "node scripts/lane-performance.mjs",
+    "shortlist-batch-verify": "node scripts/shortlist-batch-verify.mjs",
+    "lookup-job": "node scripts/lookup-job.mjs",
+    "lookup-jobs-batch": "node scripts/lookup-jobs-batch.mjs",
+    "capture-lead": "node scripts/capture-lead.mjs",
+    "log-application": "node scripts/log-application.mjs",
+    "update-job-status": "node scripts/update-job-status.mjs",
+    "store-cover-letter": "node scripts/store-cover-letter.mjs",
+    "import-applied-jobs-md": "node scripts/import-applied-jobs-md.mjs",
+    "import-legacy-cover-letters": "node scripts/import-legacy-cover-letters.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^1.7.0",
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-vertical-timeline-component": "^4.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.2",
+    "tailwindcss": "^4"
+  }
+}
