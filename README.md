@@ -8,12 +8,16 @@ The tracker runs on your machine with SQLite. Codex uses the tracker commands to
 
 Install or enable these in Codex before running the full workflow:
 
-- **Browser / browser-use**: required for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- **Browser / browser-use**: recommended for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- **Chrome**: recommended fallback for signed-in job-board sessions or sites that do not work well in Browser.
 - **Automations**: recommended for scheduled shortlist runs and weekly pipeline reviews. If automations are not available, you can run the workflow prompts manually.
 
-You do not need Gmail, GitHub, Chrome, or email plugins for the default workflow. The setup skill is included in this repo, so you do not need to install it separately; just ask Codex to read `.codex/skills/codex-job-kit-setup/SKILL.md`.
+You do not need Gmail, GitHub, or email plugins for the default workflow. The Codex skills are included in this repo, so you do not need to install them separately:
 
-Without Browser / `browser-use`, you can still run the tracker and CLI commands, but Codex cannot verify live job pages or assist with application forms.
+- `.codex/skills/codex-job-kit-setup/SKILL.md` for setup
+- `.codex/skills/job-application-workflow/SKILL.md` for assisted applications and manual-lead capture
+
+Without Browser or Chrome, you can still run the tracker and CLI commands, but Codex cannot verify live job pages or assist with application forms.
 
 Your machine also needs Node.js 20 or newer and `pnpm`. The setup request below authorizes Codex to run `pnpm install`, `pnpm lint`, `pnpm build`, and `pnpm smoke-test` inside `job-tracker/`.
 
@@ -30,7 +34,7 @@ I have attached my resume. If you cannot see it, ask me for it before creating m
 Codex should:
 
 - install tracker dependencies and run `pnpm lint`, `pnpm build`, and `pnpm smoke-test`
-- check whether Browser / `browser-use` is available and tell you to enable it if it is missing
+- check whether Browser / `browser-use` or Chrome is available and tell you what to enable if both are missing
 - ask for your resume or profile source if you did not provide one
 - ask for missing preferences as a grouped checklist covering basics, targets, filters, sources, and workflow
 - ask whether you want discovery-only, assisted applications, or both
@@ -45,7 +49,7 @@ Codex should:
 - Browser-use prompts for job discovery and assisted applications
 - CLI commands for lookup, import, status updates, cover letters, and run summaries
 - Fake sample payloads for testing setup without using personal data
-- A Codex setup skill that asks for your resume, preferences, source access, and automation cadence
+- Codex skills for setup and assisted application workflows
 
 ## Quick Start
 
@@ -71,7 +75,7 @@ pnpm smoke-test
 
 **Discovery**
 
-1. Codex searches configured sources with `browser-use`.
+1. Codex searches configured sources with `browser-use`, or Chrome fallback when needed.
 2. Codex checks duplicates with the tracker.
 3. Codex verifies live listings.
 4. Codex imports recommended, borderline, and skipped roles.

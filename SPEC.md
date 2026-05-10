@@ -80,11 +80,11 @@ Even if the user asks for a fast application loop, final-submit confirmation is 
 
 ## Browser Automation Contract
 
-The workflow uses `browser-use` for job-board and listing verification.
+The workflow uses `browser-use` for job-board and listing verification, with Chrome as a fallback when Browser is unavailable or cannot access a needed signed-in session.
 
 The agent must:
 
-- use browser automation only after reading the relevant `browser-use` instructions
+- use browser automation only after reading the relevant Browser / `browser-use` or Chrome instructions
 - ask the user to sign in manually when a source requires authentication
 - avoid storing cookies, browser profiles, passwords, or tokens in tracked files
 - use browser-final verification for recommended and borderline roles
@@ -97,7 +97,7 @@ The agent must:
 - stop before any final submit, send, or external message action and ask for explicit confirmation
 - capture a manual lead instead of bypassing CAPTCHA, login, identity, payment, or anti-automation gates
 
-If `browser-use` is unavailable, setup may continue, but job-board workflows will need manual browser work.
+If both `browser-use` and Chrome are unavailable, setup may continue, but job-board workflows will need manual browser work.
 
 ## Discovery Workflow
 
@@ -116,7 +116,7 @@ The assisted application workflow turns verified or newly found roles into appli
 The workflow should:
 
 1. Read `local/candidate-profile.md`, `local/job-search-preferences.md`, tracker state, and the selected application workflow prompt.
-2. Open the configured source with `browser-use` and inspect the live listing, not just the search-card summary.
+2. Open the configured source with `browser-use`, or Chrome fallback when needed, and inspect the live listing, not just the search-card summary.
 3. Run tracker duplicate checks by URL and by title/company before investing in an application.
 4. Screen for role family, seniority, location/work mode, work authorization, compensation rules, and hard dealbreakers.
 5. Prefer official ATS or company pages when the same role appears in multiple places.
@@ -299,7 +299,7 @@ Implementations must not commit:
 
 The agent must ask before:
 
-- installing dependencies
+- installing missing system tools
 - creating automations
 - importing sample data into the real tracker
 - submitting applications or sending messages
@@ -312,7 +312,7 @@ The agent must never:
 - bypass CAPTCHA, identity, payment, or anti-automation controls
 - invent application answers to keep an automated flow moving
 
-## Reference Implementation
+## Included Files
 
 This repository includes:
 
@@ -322,6 +322,7 @@ This repository includes:
 - `WORKFLOW.example.md`: discovery workflow example
 - `APPLICATION_WORKFLOW.example.md`: assisted application workflow example
 - `.codex/skills/codex-job-kit-setup/SKILL.md`: Codex setup procedure
+- `.codex/skills/job-application-workflow/SKILL.md`: assisted application and manual-lead workflow procedure
 - `docs/setup-with-codex.md`: human-facing setup guide
 - `examples/`: fake profile and sample import payloads
 

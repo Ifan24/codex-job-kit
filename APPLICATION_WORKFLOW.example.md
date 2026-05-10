@@ -55,7 +55,7 @@ Part-time roles, internships, contract roles, or stretch roles are allowed only 
 
 For each promising role:
 
-1. Open the listing or application page with `browser-use`.
+1. Open the listing or application page with `browser-use`, or Chrome fallback when needed.
 2. Normalize title, company, platform, canonical URL, location, and work mode.
 3. Run duplicate lookup by URL and by title/company.
 4. Read the full listing and application questions.

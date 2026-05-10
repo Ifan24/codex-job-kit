@@ -6,7 +6,7 @@ This document summarizes the tracker workflows Codex should run after setup.
 
 The public discovery workflow is built around three stages:
 
-1. Harvest and cheap pre-filter job leads with `browser-use`.
+1. Harvest and cheap pre-filter job leads with `browser-use`, or Chrome fallback when needed.
 2. Batch pre-verify surviving candidates with `pnpm shortlist-batch-verify`.
 3. Browser-final verify recommended and borderline roles before import.
 
@@ -15,11 +15,12 @@ Use `WORKFLOW.example.md` for the short workflow and `job-tracker/prompts/daily-
 ## Assisted Application Flow
 
 Use `APPLICATION_WORKFLOW.example.md` for the short workflow and `job-tracker/prompts/assisted-application-public-template.md` for the full prompt.
+For live application sessions, also read `.codex/skills/job-application-workflow/SKILL.md`.
 
 The assisted application flow is:
 
 1. Start from tracker roles, a job-board search, or an official company/ATS page.
-2. Use `browser-use` to inspect the live listing and application questions.
+2. Use `browser-use`, or Chrome fallback when needed, to inspect the live listing and application questions.
 3. Check duplicates by URL and by title/company before filling forms.
 4. Screen for role, seniority, location, work mode, work authorization, compensation, and dealbreakers.
 5. Fill only factual fields grounded in the local candidate profile.
@@ -82,7 +83,7 @@ Tracker source lanes, candidate defaults, document options, and workflow toggles
 
 ## Safety Rules
 
-- Browser automation uses `browser-use`.
+- Browser automation prefers `browser-use`, with Chrome as fallback for signed-in or Browser-blocked flows.
 - Mailbox sync is not part of the default workflow.
 - Codex must pause before final application submission.
 - The Process Summary uses current tracker data and finalized run summaries.

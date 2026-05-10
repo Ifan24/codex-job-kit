@@ -40,7 +40,7 @@ This workflow optimizes for useful submitted applications and high-quality manua
 
 ## Browser Execution Model
 
-Use `browser-use` only.
+Prefer `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
 
 Preferred patterns:
 
@@ -54,7 +54,7 @@ Preferred patterns:
    - do not let any other worker or the main agent navigate that browser while the owner is active
    - use this for easy-apply surfaces or sources that do not behave reliably in isolated cookie-shared sessions
 
-Do not rely on Codex's built-in browser or OpenAI's in-app browser for this workflow.
+Do not use other browser surfaces unless the user explicitly asks for them.
 
 ## Source Priority
 
@@ -92,7 +92,7 @@ Apply or capture a lead only when the role matches the user's role family, level
 
 For each suitable role:
 
-1. Open the application flow with `browser-use`.
+1. Open the application flow with `browser-use`, or Chrome when using fallback mode.
 2. Read all visible questions before filling.
 3. Fill factual fields from `<CANDIDATE_PROFILE>` and `<JOB_SEARCH_PREFERENCES>`.
 4. Ask the user when a question needs judgment, sensitive disclosure, or missing information.

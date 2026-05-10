@@ -17,13 +17,17 @@ Codex should read `SPEC.md` for workflow rules and `.codex/skills/codex-job-kit-
 The default workflow expects:
 
 - Browser / `browser-use` for job-board discovery, live listing verification, tracker browser checks, and assisted application forms.
+- Chrome as a fallback for signed-in job-board sessions or sites that do not work well in Browser.
 - Codex Automations for scheduled shortlist runs and weekly pipeline reviews.
 
-The setup skill is included in this repo. The user does not need to install it separately.
+The Codex skills are included in this repo. The user does not need to install them separately:
 
-Gmail, GitHub, Chrome, and email plugins are not required for the default workflow.
+- `.codex/skills/codex-job-kit-setup/SKILL.md` for setup
+- `.codex/skills/job-application-workflow/SKILL.md` for assisted applications and manual-lead capture
 
-If Browser / `browser-use` is missing, tell the user to install or enable it from Codex, continue the non-browser setup, and make clear that live job-board workflows are not ready until Browser Use is available.
+Gmail, GitHub, and email plugins are not required for the default workflow.
+
+If Browser / `browser-use` is missing but Chrome is available, configure Chrome as the fallback browser surface for live workflows. If both Browser and Chrome are missing, tell the user to install or enable one of them from Codex, continue the non-browser setup, and make clear that live job-board workflows are not ready until a browser plugin is available.
 
 ## What Codex Should Do
 
@@ -31,7 +35,7 @@ If Browser / `browser-use` is missing, tell the user to install or enable it fro
 2. Check Node.js and pnpm availability.
 3. Install tracker dependencies with `pnpm install`.
 4. Run tracker checks after install: `pnpm lint`, `pnpm build`, and `pnpm smoke-test`.
-5. Check whether Browser / `browser-use` is available.
+5. Check whether Browser / `browser-use` or Chrome is available.
 6. If the user did not already attach or provide a resume, ask them to upload or provide a resume, CV, LinkedIn export, or profile source before creating `local/candidate-profile.md`.
 7. Ask for job-search preferences, dealbreakers, source access, and workflow mode.
 8. Create private setup files under `local/`.
@@ -94,7 +98,7 @@ After setup, ask Codex:
 
 ```text
 Run my local daily shortlist workflow from local/prompts/daily-shortlist.md.
-Use browser-use for live verification and import only verified roles into the tracker.
+Prefer browser-use for live verification and use Chrome as fallback when needed. Import only verified roles into the tracker.
 ```
 
 The first run should produce:
@@ -110,7 +114,7 @@ For assisted applications, ask Codex:
 
 ```text
 Run my local assisted application workflow from local/prompts/assisted-application.md.
-Use browser-use to screen live listings, fill only factual fields, pause before final submit, and capture manual leads when blocked.
+Prefer browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields, pause before final submit, and capture manual leads when blocked.
 ```
 
 The assisted run should produce:
@@ -147,12 +151,13 @@ Use this prompt to start discovery:
 
 ```text
 Start my first daily shortlist workflow using local/prompts/daily-shortlist.md.
-Use browser-use for live verification, import only verified roles, and summarize what changed in the tracker.
+Prefer browser-use for live verification and use Chrome as fallback when needed. Import only verified roles and summarize what changed in the tracker.
 ```
 
 Use this prompt to start assisted applications:
 
 ```text
 Start my first assisted application workflow using local/prompts/assisted-application.md.
-Use browser-use to screen live listings, fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
+Read .codex/skills/job-application-workflow/SKILL.md first.
+Prefer browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
 ```

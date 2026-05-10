@@ -24,11 +24,11 @@ The goal is to turn a fresh clone into a living local workspace:
 - Do not commit resumes, private candidate profiles, real application history, generated cover letters, browser profiles, cookies, SQLite databases, or local settings.
 - Keep user-specific files under `local/`, `job-tracker/data/`, or `job-tracker/storage/`.
 - Never ask for passwords. If a job board needs sign-in, ask the user to sign in themselves in the browser.
-- Prefer Browser / `browser-use` for browser automation. If it is missing, tell the user how to enable/install it and pause browser-dependent setup until it is available.
+- Prefer Browser / `browser-use` for browser automation, with Chrome as fallback when Browser is unavailable or cannot access a needed signed-in session.
 - Never click a final submit, send, or message action without explicit action-time confirmation from the user.
 - Before creating Codex automations, show the exact proposed automations in plain language and ask for confirmation.
 - The setup request authorizes repo-local dependency install and checks: `pnpm install`, `pnpm lint`, `pnpm build`, and `pnpm smoke-test`.
-- Gmail, GitHub, Chrome, and email plugins are not required for the default workflow.
+- Gmail, GitHub, and email plugins are not required for the default workflow.
 
 ## Setup Flow
 
@@ -50,6 +50,7 @@ Confirm the repo has:
 - `job-tracker/`
 - `job-tracker/prompts/daily-shortlist-public-template.md`
 - `job-tracker/prompts/assisted-application-public-template.md`
+- `.codex/skills/job-application-workflow/SKILL.md`
 - `WORKFLOW.example.md`
 - `APPLICATION_WORKFLOW.example.md`
 - `examples/`
@@ -80,7 +81,7 @@ Do not ask before running the repo-local `pnpm` commands above. The user already
 
 ### 3. Check Browser Automation
 
-Confirm whether a Browser / `browser-use` skill or plugin is available in Codex.
+Confirm whether a Browser / `browser-use` skill or plugin is available in Codex. Also check whether Chrome is available as a fallback browser surface.
 
 If it is available:
 
@@ -89,9 +90,10 @@ If it is available:
 
 If it is not available:
 
-- tell the user: "This workflow expects Browser / browser-use for job-board discovery, live listing verification, tracker browser checks, and assisted application forms."
-- ask them to enable/install Browser Use in Codex; it is a Codex capability, not a package this repo can add with `pnpm`
-- continue non-browser setup, but do not pretend the daily workflow is fully ready
+- if Chrome is available, tell the user Browser is missing but Chrome can be used as the fallback for live job workflows
+- if both Browser and Chrome are missing, tell the user: "This workflow expects Browser / browser-use or Chrome for job-board discovery, live listing verification, tracker browser checks, and assisted application forms."
+- ask them to enable/install Browser Use or Chrome in Codex; these are Codex capabilities, not packages this repo can add with `pnpm`
+- continue non-browser setup, but do not pretend the daily workflow is fully ready without at least one browser plugin
 
 ### 4. Intake The User Profile
 
@@ -136,7 +138,7 @@ cd job-tracker
 pnpm dev
 ```
 
-Open the tracker with `browser-use`, confirm the homepage loads, then open Settings and align:
+Open the tracker with Browser / `browser-use`, or Chrome fallback when needed, confirm the homepage loads, then open Settings and align:
 
 - source lanes
 - candidate defaults
@@ -253,10 +255,11 @@ Use these next-step prompts when relevant:
 
 ```text
 Start my first daily shortlist workflow using local/prompts/daily-shortlist.md.
-Use browser-use for live verification, import only verified roles, and summarize what changed in the tracker.
+Prefer browser-use for live verification and use Chrome as fallback when needed. Import only verified roles and summarize what changed in the tracker.
 ```
 
 ```text
 Start my first assisted application workflow using local/prompts/assisted-application.md.
-Use browser-use to screen live listings, fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
+Read .codex/skills/job-application-workflow/SKILL.md first.
+Prefer browser-use for live listings and use Chrome as fallback when needed. Fill only factual fields from my local profile, pause before final submit, and capture manual leads when blocked.
 ```

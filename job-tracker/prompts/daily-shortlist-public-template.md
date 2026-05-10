@@ -43,7 +43,7 @@ Search for fresh job leads, filter them against candidate fit and already-tracke
 
 ## Browser Execution Model
 
-Use `browser-use` only.
+Prefer `browser-use`. Use the Chrome plugin as fallback when Browser is unavailable, broken for the target site, or cannot access a needed signed-in session.
 
 Preferred patterns:
 
@@ -57,7 +57,7 @@ Preferred patterns:
    - do not let any other worker or the main agent navigate that browser while the owner is active
    - use this for sources that do not behave reliably in isolated cookie-shared sessions
 
-Do not rely on Codex's built-in browser or OpenAI's in-app browser for this workflow.
+Do not use other browser surfaces unless the user explicitly asks for them.
 
 ## Three-Stage Search Flow
 
